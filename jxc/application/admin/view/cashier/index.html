@@ -1,0 +1,78 @@
+<div class="panel panel-default panel-intro">
+    {:build_heading()}
+    <div class="panel-body">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="one">
+                <div class="widget-body no-padding">
+                    <div id="toolbar" class="toolbar" >
+                        <a id="setMember" class="btn btn-success {:$auth->check('cashregister/setMember')?'':'hide'}" title="{:__('支付方式')}" ><i class="fa fa-user"></i> 
+                            <select>
+                                <option>支付方式</option>
+                                <option value="1">会员支付</option>
+                                <option value="2">其他方式</option>
+                            </select></a>
+                    </div>
+                    <div id="toolbar" class="toolbar" >
+                        <a id="setStorage" class="btn btn-success {:$auth->check('cashregister/setStorage')?'':'hide'}" title="{:__('商品选择')}" ><i class="fa fa-university"></i> 商品选择</a>
+                        <input class="form-control" type="text" id="c-barcode" placeholder="条码">
+                    </div>
+                    <div id="toolbar" class="toolbar" >
+                        <a id="addGood" class="btn btn-success {:$auth->check('cashregister/addGood')?'':'hide'}" title="{:__('结账')}" ><i class="fa fa-shopping-cart"></i>结账</a>
+                    </div>
+                        <!-- <select>
+                            <option>请选择支付方式</option>
+                            <option>会员支付</option>
+                        </select> -->
+                        
+
+                    <div class="pull-right search">
+
+                    </div>
+                    
+                    <table id="table" class="table table-striped table-bordered table-hover" width="100%"></table>
+                    <div class="row m-t-15 m-b-15">
+                        <div class="col-sm-6 col-md-6 col-lg-6 h5" style="font-size: 14px;">共<span class="text-warning bold" id="goods_type_count">0</span>种商品，数量<span class="text-warning bold" id="goods_count">0</span></div>
+                        <div class="col-sm-6 col-md-6 col-lg-6 text-right h5" style="font-size: 14px;">合计金额：<span class="text-warning" id="price">0</span></div>
+                        <div class="clearfix"></div>
+                        <div class="col-sm-12 col-md-4 col-lg-4 text-right h5 p-l-0 pull-right" style="font-size: 14px;">折后金额：<span class="text-warning" id="money">0</span></div>
+                        <!-- <div class="clearfix"></div> -->
+                        <!-- <div class="col-sm-12 col-md-12 col-lg-12 text-right h5 p-l-0 mfb_Hide" style="font-size: 14px;">合计积分：<span class="text-warning" id="p_hjjf">0</span></div> -->
+                        <div class="col-sm-12 col-md-12 col-lg-12 p-r-0" >
+                            <div class="h5 col-sm-4 col-md-3 col-lg-1 p-0" style="font-size: 14px;">备　 注：</div>
+                            <div class="col-sm-3 col-md-3 col-lg-3 p-l-0">
+                                <textarea id="remark" name="remark" rows="2" class="form-control" maxlength="150"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pull-right">
+                        <a id="notCompleted" class="btn btn-danger" title="{:__('未完成订单')}"> {:__('未完成订单')}</a>
+                        <a id="hangUp" class="btn btn-info" title="{:__('挂单')}" > {:__('挂单')}</a>
+                        <a id="removeAll" class="btn btn-success" title="{:__('清空')}" > {:__('清空')}</a>
+                        <a id="submit" class="btn btn-warning" title="{:__('结账')}" > {:__('结账')}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <input type='text'/>
+        <div class="keyboard"></div> -->
+    </div>
+</div>
+<div style="margin-left:200%;">
+    <div id="d-ticket" >123123</div>
+</div>
+<style type="text/css">
+.text-warning {
+    color: #ff9900;
+}
+.bold {
+    font-weight: bold;
+}
+.row {
+    padding: 1%;
+    margin: 1% auto;
+    margin-bottom: 1%;
+}
+textarea.form-control {
+    height: 100px;
+}
+</style>

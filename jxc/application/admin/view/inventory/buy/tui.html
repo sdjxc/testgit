@@ -1,0 +1,90 @@
+<form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Sn')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-sn" class="form-control" name="row[sn]"  type="text" readonly value="{$row.sn}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Buyer')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-buyer" class="form-control" name="row[buyer]" type="text" readonly value="{$row.buyer}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Author')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-author" class="form-control" name="row[author]" type="text" value="{$admin.nickname}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-type" class="control-label col-xs-12 col-sm-2">{:__('Type')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <select id="c-type" data-rule="required" class="form-control selectpicker" name="row[type]" value=""  disabled="disabled" >
+                {foreach name="rutypeList" key="k" item="v"}
+                    <option value="{$k}"   {in name="$v" value="采购退货"}selected{/in}>{$v}</option>
+                {/foreach}
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Supplier')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-supplier" class="form-control" type="text" name="row[supplier]"value="{$row.supplier}"  readonly>
+        </div>
+    </div>
+    <table class="table table-striped table-bordered table-hover dataTable no-footer" align="center" style="width: 66%;">
+        <thead>
+            <tr role="row">
+                <th  class="sorting_disabled" rowspan="1" colspan="1">
+                    产品名称
+                </th>
+                <th class="sorting_disabled" rowspan="1" colspan="1">
+                    采购数量
+                </th>
+                <th class="sorting_disabled" rowspan="1" colspan="1">
+                    产品进价
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+                {foreach name="goodsxin" item="v"}
+                <tr role="row" class="odd">
+                    <td>
+                        <select name="goods[]" class="form-control">
+                            {volist name='goodsList' id='vo'}
+                            <option value="{$vo.id}_{$vo.sn}_{$vo.name}_{$vo.price}_{$vo.unit}"  {in name="$vo.id" value="$v.goods_id"}selected{/in}>{$vo.name}</option>
+                            {/volist}
+                        </select> 
+                    </td>
+                    <td> 
+                        <input type="text" class="form-control" value="{$v.goods_num}" name="num[]"> 
+                    </td>
+                    <td><input type="text" class="form-control" value="{$v.goods_purchase}" name="purchase[]"></td>
+
+                </tr>
+            {/foreach}
+        </tbody>
+    </table>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Desc')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea id="c-desc" class="form-control " rows="5" name="row[desc]" cols="50">{$row.desc}</textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">退货时间:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-add_time" class="form-control datetimepicker" data-date-format="YYYY-MM-DD HH:mm:ss" data-use-current="true" name="row[add_time]" type="text" value="{:date('Y-m-d H:i:s')}">
+        </div>
+    </div>
+    <input type="hidden" name="row[res]" value="{$row.res}">
+     <input id="c-state" name="row[state]" type="hidden" readonly>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-danger btn-embossed btn-tui">退货</button>
+        </div>
+    </div>
+</form>

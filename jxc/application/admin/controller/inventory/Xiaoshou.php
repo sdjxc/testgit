@@ -1,0 +1,52 @@
+<?php
+
+namespace app\admin\controller\inventory;
+
+use app\common\controller\Backend;
+
+/**
+ * 销售管理
+ *
+ * @icon fa fa-circle-o
+ */
+class Xiaoshou extends Backend
+{
+    
+    /**
+     * Ruku模型对象
+     * @var \app\admin\model\Ruku
+     */
+    protected $model = null;
+
+    public function _initialize()
+    {
+        parent::_initialize();
+        $this->model = model('Xiaoshou');
+        $this->view->assign("stateList", $this->model->getStateList());
+        $this->assign('supplierList',model('Supplier')->getList());
+        $this->assign('goodsList',model('Goods')->getGoodsList());
+        $this->assign('rutypeList',model('Rutype')->getList());
+    }
+    
+    /**
+     * 默认生成的控制器所继承的父类中有index/add/edit/del/multi五个基础方法、destroy/restore/recyclebin三个回收站方法
+     * 因此在当前控制器中可不用编写增删改查的代码,除非需要自己控制这部分逻辑
+     * 需要将application/admin/library/traits/Backend.php中对应的方法复制到当前控制器,然后进行修改
+     */
+    /**
+     * 详情
+     */
+    public function collect(){
+        return $this->view->fetch();
+    }
+    /**
+     * 查询商品
+     */
+    public function search(){
+        if ($this->request->isPost())
+        {
+            $goods = input('post.');
+            dump($goods);exit;
+        }
+    }
+}
